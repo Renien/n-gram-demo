@@ -1,0 +1,24 @@
+{
+  "name": "debug-demo",
+  "description": "To show the NLP internals",
+  "main": "search.js",
+  "authors": [
+    "Renien"
+  ],
+  "license": "ISC",
+  "moduleType": [],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^2.2.3",
+    "semantic": "semantic-ui#^2.1.8",
+    "jsoneditor": "^5.5.1"
+  }
+}

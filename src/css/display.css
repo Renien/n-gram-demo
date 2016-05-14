@@ -1,0 +1,148 @@
+
+.circle{
+    border-radius:50%;
+    color:#000;
+    line-height:30px;
+    text-align:center;
+    overflow: hidden;
+    font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+    font-weight: 700;
+    /*height:30px;*/
+}
+
+.square{
+    /*position: relative;*/
+    font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+    font-weight: 700;
+    color:#000;
+    /*text-align:center;*/
+    /*overflow: hidden;*/
+}
+
+
+.circle.token.center {
+    background:#fffda8;
+
+}
+
+.square.tag.center {
+    /*width:40px;*/
+    background: #a4bced;
+}
+
+.square-up-arrow.center {
+    position: relative;
+    /*width:80px;*/
+    font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+    font-weight: 700;
+    overflow: hidden;
+    text-align:center;
+    background: #FFF;
+}
+
+/*
+Eduted by R
+.square-up-arrow.filter{
+    margin: 0 20px 0 40px;
+}
+*/
+
+.rotate{
+    transform: rotate(90deg);
+
+}
+
+.stretch-4 {
+    transform:scale(4,1);
+}
+
+.stretch-6{
+    transform:scale(6,2);
+}
+
+.stretch-2{
+    transform:scale(2,1);
+}
+
+.circle.ngram{
+    background:#3b83c0;
+}
+
+
+.circle.value{
+    background: #00b5ad;
+}
+
+.square.field {
+    background: #5bbd72;
+}
+
+
+
+.circle.filter.center {
+    background: #d48c5d;
+}
+
+/*Edited by R*/
+.square.filter.center {
+    background: #d1e160;
+}
+
+
+.boxed {
+    border: 1px solid black ;
+    width: 550px;
+    height: 120px;
+    overflow:auto;
+}
+
+.hide {
+    display: none;
+}
+
+.stretch-6.query-arrow.center{
+    margin: 0 50px 0 20px;
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.bold{
+    /*font-weight: bold;*/
+    color: #345fff;
+}
+
+.json-view{
+    margin: 1%;
+    width: 50%;
+    font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+    font-weight: 700;
+    display: -webkit-inline-box;
+}
+
+.option{
+    width: 120px;
+    font-size:16px;
+    color:#000;
+    line-height:30px;
+}
+
+.btn-search{
+    background-color: #345fff;
+}
+
+.center {
+    margin: auto;
+    /*width: 60%;*/
+    /*border: 1px solid #73AD21;*/
+    margin: 3px;
+    padding: 5px;
+}
+
+.label {
+    font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+    font-weight: 700;
+}

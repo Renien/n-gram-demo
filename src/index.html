@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>N-Gram Demo</title>
+    <!-- inject:css -->
+    <link rel="stylesheet" href="../bower_components/semantic/dist/semantic.min.css">
+    <link rel="stylesheet" href="../bower_components/jsoneditor/dist/jsoneditor.min.css">
+    <link rel="stylesheet" href="css/display.css">
+    <!-- endinject -->
+</head>
+
+
+<body>
+
+<h1 class="ui header" style="text-align: center;padding: 1%">N-Gram Demo</h1>
+
+<div class="ui one column centered grid">
+  <div class="column" style="text-align:center">
+    <div class="ui input" style="width:50%">
+      <input type="text" placeholder="Search..." spellcheck="false" ginger_software_editor="true" class="GINGER_SOFTWARE_control" style="position: relative; font-size: 14px; white-space: pre-wrap; line-height: 16.9988px; background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK8AAAAPCAYAAACSjp+bAAAAX0lEQVRoQ+3SAQ0AAAjDMO7fNDqWFAXP6M4pEC2w6G6zFTh4IcgWgDf7OsPhZSBbAN7s6wyHl4FsAXizrzMcXgayBeDNvs5weBnIFoA3+zrD4WUgWwDe7OsMh5eBbIEHcboAEHEIdVEAAAAASUVORK5CYII=&quot;) !important; background-attachment: local !important; background-position: 14px 17px !important; background-repeat: no-repeat !important;" id="searchQuery">
+   </div>
+  </div>
+
+  <div class="column" style="text-align:center">
+    <div style="display: -webkit-inline-box; padding:5px">
+        <!-- Check box to turn on/off the debug -->
+        <div class="ui checkbox">
+          <input type="checkbox" name="debug" id="display-debug">
+          <label>Verbose</label>
+        </div>
+        <button class="ui primary button" onclick="search()" style="margin:0 1ISUALIZEpx">
+          Search
+        </button>
+        <select class="ui dropdown" id="display-option">
+          <option value="visualize">VISUALIZE</option>
+          <option value="json">JSON</option>
+        </select>
+    </div>
+  </div>
+</div>
+
+<!-- Header -->
+<div style="text-align:-webkit-center">
+  <div id="div-head" style="width:50%;">
+    <!-- Display the visalization-->
+    <div class="ui one column centered grid">
+      <div class="column" style="text-align:center">
+        <h2 class="ui header" style="text-align: center">Results</h2>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Json view -->
+<div style="text-align: center; padding-top: 1%;">
+  <div id="div-json-viewer" class="json-view ui"></div>
+</div>
+
+<!-- Verbose -->
+<div style="text-align:-webkit-center">
+  <div id="div-debug" style="width:50%;">
+    <!-- Tokens -->
+    <div class="ui one column centered grid segments">
+      <div class="column" style="text-align:center">
+        <h3 class="ui header" style="text-align: center">Tokens</h3>
+      </div>
+      <div class="column" style="text-align:center; overflow-x: auto;">
+        <div><table id="table-tokens" style="margin: 0 auto"></table></div>
+      </div>
+    </div>
+
+    <!-- Pos Tags -->
+    <div class="ui one column centered grid segments">
+      <div class="column" style="text-align:center">
+        <h3 class="ui header" style="text-align: center">POS Tags</h3>
+      </div>
+      <div class="column" style="text-align:center; overflow-x: auto;">
+        <div><table id="table-pos-tags" style="margin: 0 auto"></table></div>
+      </div>
+    </div>
+
+    <!-- NGrams-->
+    <div class="ui one column centered grid segments">
+      <div class="column" style="text-align:center">
+        <h3 class="ui header" style="text-align: center">N-Grams</h3>
+      </div>
+      <div class="column" style="text-align:center; overflow-x: auto;">
+        <div><table id="table-ngrams" style="margin: 0 auto"></table></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="text-align:-webkit-center">
+  <div id="div-data" style="width:50%;">
+    <div class="ui one column centered grid segments">
+      <div class="column" style="text-align:center">
+        <div style="display: -webkit-inline-box">
+            <div class="label">
+              Original Query
+            </div>
+            <i class="long arrow right icon"></i>
+            <div id="original_query" class="label">Hello</div>
+        </div>
+      </div>
+      <div class="column" style="text-align:center">
+        <div style="display: -webkit-inline-box">
+            <div class="label">
+              Modified Query
+            </div>
+            <i class="long arrow right icon"></i>
+            <div id="modified_query" class="label">Hello</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Filter -->
+    <div class="ui one column centered grid segments">
+      <div class="column" style="text-align:center">
+        <h3 class="ui header" style="text-align: center">Filters</h3>
+      </div>
+      <div class="column" style="text-align:center; overflow-x: auto;">
+        <div><table id="table-filters" style="margin: 0 auto"></table></div>
+      </div>
+    </div>
+
+    <!-- Fields -->
+    <div class="ui one column centered grid segments">
+      <div class="column" style="text-align:center">
+        <h3 class="ui header" style="text-align: center">Fields</h3>
+      </div>
+      <div class="column" style="text-align:center; overflow-x: auto;">
+        <div><table id="table-fields" style="margin: 0 auto"></table></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- loader -->
+<div id="div-loader">
+  <div class="ui active inverted dimmer">
+    <div class="ui text loader">Loading</div>
+  </div>
+</div>
+
+<!-- <div id="div-error" class="ui negative message">
+  <i class="close icon"></i>
+  <div class="header">
+    Empty Search Box
+  </div>
+  <p>Please enter a query
+</p></div> -->
+
+    <div id="div-meta" style="display: none;">
+        <div class="bold">Meta Data:</div><br>
+        <div class="boxed">
+            <table id="table-meta"></table>
+        </div><br><br>
+    </div>
+
+    <!-- inject:js -->
+    <script src="../bower_components/jquery/dist/jquery.js"></script>
+    <script src="../bower_components/semantic/dist/semantic.min.js"></script>
+    <script src="../bower_components/jsoneditor/dist/jsoneditor.min.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/display.js"></script>
+    <script src="js/search.js"></script>
+    <!-- endinject -->
+
+</body>
+
+
+</html>
